@@ -1,0 +1,44 @@
+﻿<Window x:Class="calendartest.addentry"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:calendartest"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        mc:Ignorable="d"
+        Title="addentry" Height="396.777" Width="483.107" Loaded="Window_Loaded">
+    <Grid x:Name="top">
+        <Label Content="Name of Event:" HorizontalAlignment="Left" Margin="32,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.559,-2.276"/>
+        <TextBox x:Name="evntnmtxtbx" HorizontalAlignment="Left" Height="23" Margin="142,34,0,0" TextWrapping="Wrap" Text="Enter the event name here..." VerticalAlignment="Top" Width="181" GotFocus="Evntnmtxtbx_GotFocus"/>
+        <Label Content="Start Time:" HorizontalAlignment="Left" Margin="56,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.752,0.698"/>
+        <Label Content="End Time:" HorizontalAlignment="Left" Margin="56,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.752,0.698"/>
+        <GroupBox Header="Recurrance" HorizontalAlignment="Left" Height="100" Margin="32,219,0,0" VerticalAlignment="Top" Width="402">
+            <Grid>
+                <CheckBox Content="Sunday" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="Monday" HorizontalAlignment="Left" Margin="95,10,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="Tuesday" HorizontalAlignment="Left" Margin="181,10,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="Wednsday" HorizontalAlignment="Left" Margin="272,10,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="Thursday" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="Friday" HorizontalAlignment="Left" Margin="95,42,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="Saturday" HorizontalAlignment="Left" Margin="178,42,0,0" VerticalAlignment="Top"/>
+
+            </Grid>
+        </GroupBox>
+        <ComboBox x:Name="strttmpicker" HorizontalAlignment="Left" Margin="142,85,0,0" VerticalAlignment="Top" Width="68" IsEditable="True" IsTextSearchEnabled="True" LostFocus="Strttmpicker_LostFocus">
+        </ComboBox>
+        <ComboBox x:Name="strttmampm" HorizontalAlignment="Left" Margin="232,85,0,0" VerticalAlignment="Top" Width="52" RenderTransformOrigin="-0.804,0.636" SelectedIndex="0">
+            <ComboBoxItem Content="AM" />
+            <ComboBoxItem Content="PM" />
+        </ComboBox>
+        <ComboBox x:Name="endtmpicker" HorizontalAlignment="Left" Margin="142,129,0,0" VerticalAlignment="Top" Width="68" IsEditable="True" IsTextSearchEnabled="True" LostFocus="Strttmpicker_LostFocus">
+        </ComboBox>
+        <ComboBox x:Name="endtmampm" HorizontalAlignment="Left" Margin="232,129,0,0" VerticalAlignment="Top" Width="52" RenderTransformOrigin="-0.804,0.636" SelectedIndex="0">
+            <ComboBoxItem Content="AM" />
+            <ComboBoxItem Content="PM" />
+        </ComboBox>
+        <CheckBox x:Name="blkprogramchkbx" Content="Block Programs" HorizontalAlignment="Left" Margin="56,187,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="blkwebstbtn" Content="Block Websites" HorizontalAlignment="Left" Margin="232,189,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Addbtn" Content="Add event" HorizontalAlignment="Left" Margin="83,336,0,0" VerticalAlignment="Top" Width="99"/>
+        <Button x:Name="cancelbtn" Content="Cancel Changes" HorizontalAlignment="Left" Margin="256,336,0,0" VerticalAlignment="Top" Width="106" Click="Cancelbtn_Click"/>
+    </Grid>
+</Window>
