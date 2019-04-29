@@ -126,7 +126,29 @@ namespace calendartest
         }
         private void Cleanupdb()
         {
-            //TODO: here we will be cleaning up old entries in the db
+            using (SQLiteConnection dbconnection = new SQLiteConnection("DataSource=calendardb.db;Version=3;"))
+            {
+                dbconnection.Open();
+
+                //TODO: here we will be cleaning up old entries in the db
+                string sql = "select * from single_events order by Creation_Date";
+                SQLiteCommand command = new SQLiteCommand(sql, dbconnection);
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    //check each entry from the reader and delete from the table IF the schedule entry is in the past
+                    DateTime dbdate = Convert.ToDateTime(reader["Creation_Date"]);
+                    DateTime nowdate = Convert.ToDateTime(DateTime.Now.ToString("MM-dd"));
+                    if (dbdate < nowdate)
+                    {
+                        //delete the entry, its old.
+                        sql = "DELETE  from single_events where id = " + reader["id"].ToString();
+                        command = new SQLiteCommand(sql, dbconnection);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                dbconnection.Close();
+            }
         }
         private void refreshcalendar()
         {
@@ -139,6 +161,13 @@ namespace calendartest
                 //here we write everything to the calendar
 
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //run the cleanup and refresh
+            Cleanupdb();
+            refreshcalendar();
         }
     }
 }
