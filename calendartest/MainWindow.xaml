@@ -24,7 +24,7 @@
         <TextBlock Text="Friday" Grid.Row="0" Grid.Column="5" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
         <TextBlock Text="Satuday" Grid.Row="0" Grid.Column="6" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
         <ListBox x:Name="sunlist" Grid.Row="1" Grid.Column="0" MouseDoubleClick="Sunlist_MouseDoubleClick" >
-            <ListBoxItem x:Name="new_sun" Content="click here"/>
+            <ListBoxItem x:Name="new_sun" Content="click here" Selected="New_sun_Selected"/>
         </ListBox>
         <ListBox x:Name="monlist" Grid.Row="1" Grid.Column="1" MouseDoubleClick="Monlist_MouseDoubleClick" >
             <ListBoxItem x:Name="new_mon" Content="click here"/>

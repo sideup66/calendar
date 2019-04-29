@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.IO;
 namespace calendartest
 {
     /// <summary>
@@ -22,6 +23,49 @@ namespace calendartest
         public addentry()
         {
             InitializeComponent();
+        }
+
+        //write data to the table
+        void dbwriter()
+        {
+            //write the entry to the table
+            using (SQLiteConnection dbconnection = new SQLiteConnection("DataSource=calendardb.db;Version=3;"))
+            {
+                dbconnection.Open();
+                int blockprogs = 0;
+                int blocksites = 0;
+                string sql;
+                string wkday;
+                SQLiteCommand command;
+                if (blkprogramchkbx.IsChecked == true)
+                {
+                    blockprogs = 1;
+                }
+                if (blkwebstbtn.IsChecked == true)
+                {
+                    blocksites = 1;
+                }
+                using (StreamReader day = new StreamReader("day.txt"))
+                {
+                    wkday = day.ReadLine();
+                }
+                //use an if statement, if wkday is the current day, set the schedule for the same day
+
+                //find the next day using what is in the readline
+                int advclock = 1;
+                //string setdate = DateTime.Today.DayOfWeek.ToString();
+                string setdate = DateTime.Today.AddDays(advclock).DayOfWeek.ToString();
+                while (wkday != setdate)
+                {
+                    setdate = DateTime.Today.AddDays(advclock).DayOfWeek.ToString();
+                    advclock++;
+                }
+                setdate = DateTime.Today.AddDays(advclock).ToString("MM-dd");
+                sql = "insert into Single_Events (Creation_Date, Event_Name, Start_Time, End_Time, Block_Sites, Block_Programs) values ('" + setdate + "', '" + evntnmtxtbx.Text + "', '" + strttmpicker.Text + " " + strttmampm.Text + "', '" + endtmpicker.Text + " " + endtmampm.Text + "', " + blockprogs + " , " + blocksites + ")";
+                command = new SQLiteCommand(sql, dbconnection);
+                command.ExecuteNonQuery();
+                dbconnection.Close();
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -85,6 +129,13 @@ namespace calendartest
         private void Cancelbtn_Click(object sender, RoutedEventArgs e)
         {
             //closes the form
+            this.Close();
+        }
+
+        private void Addbtn_Click(object sender, RoutedEventArgs e)
+        {
+            //write to the database and close
+            dbwriter();
             this.Close();
         }
     }
