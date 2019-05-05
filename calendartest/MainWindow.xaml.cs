@@ -56,7 +56,13 @@ namespace calendartest
             }
             if (monlist.SelectedIndex == 0)
             {
-               
+                //create a new item
+                addentry frm2 = new addentry();
+                frm2.Show();
+                using (StreamWriter day = new StreamWriter("day.txt"))
+                {
+                    day.WriteLine("Monday");
+                }
             }
         }
         private void tuelist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -68,8 +74,13 @@ namespace calendartest
             }
             if (tuelist.SelectedIndex == 0)
             {
-                MessageBox.Show("you have selected this item. An item was added");
-                tuelist.Items.Add("new");
+                //create a new item
+                addentry frm2 = new addentry();
+                frm2.Show();
+                using (StreamWriter day = new StreamWriter("day.txt"))
+                {
+                    day.WriteLine("Tuesday");
+                }
             }
         }
         private void wedlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -81,8 +92,13 @@ namespace calendartest
             }
             if (wedlist.SelectedIndex == 0)
             {
-                MessageBox.Show("you have selected this item. An item was added");
-                wedlist.Items.Add("new");
+                //create a new item
+                addentry frm2 = new addentry();
+                frm2.Show();
+                using (StreamWriter day = new StreamWriter("day.txt"))
+                {
+                    day.WriteLine("Wednesday");
+                }
             }
         }
         private void thurlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -94,8 +110,13 @@ namespace calendartest
             }
             if (thurlist.SelectedIndex == 0)
             {
-                MessageBox.Show("you have selected this item. An item was added");
-                thurlist.Items.Add("new");
+                //create a new item
+                addentry frm2 = new addentry();
+                frm2.Show();
+                using (StreamWriter day = new StreamWriter("day.txt"))
+                {
+                    day.WriteLine("Thursday");
+                }
             }
         }
         private void frilist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -107,8 +128,13 @@ namespace calendartest
             }
             if (frilist.SelectedIndex == 0)
             {
-                MessageBox.Show("you have selected this item. An item was added");
-                frilist.Items.Add("new");
+                //create a new item
+                addentry frm2 = new addentry();
+                frm2.Show();
+                using (StreamWriter day = new StreamWriter("day.txt"))
+                {
+                    day.WriteLine("Friday");
+                }
             }
         }
         private void satlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -120,8 +146,13 @@ namespace calendartest
             }
             if (satlist.SelectedIndex == 0)
             {
-                MessageBox.Show("you have selected this item. An item was added");
-                satlist.Items.Add("new");
+                //create a new item
+                addentry frm2 = new addentry();
+                frm2.Show();
+                using (StreamWriter day = new StreamWriter("day.txt"))
+                {
+                    day.WriteLine("Saturday");
+                }
             }
         }
         private void Cleanupdb()

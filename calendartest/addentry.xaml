@@ -27,6 +27,6 @@
         <CheckBox x:Name="blkwebstbtn" Content="Block Websites" HorizontalAlignment="Left" Margin="232,187,0,0" VerticalAlignment="Top"/>
         <Button x:Name="Addbtn" Content="Add event" HorizontalAlignment="Left" Margin="56,280,0,0" VerticalAlignment="Top" Width="99" Click="Addbtn_Click"/>
         <Button x:Name="cancelbtn" Content="Cancel Changes" HorizontalAlignment="Left" Margin="232,280,0,0" VerticalAlignment="Top" Width="106" Click="Cancelbtn_Click"/>
-        <CheckBox Content="Repeat schedule" HorizontalAlignment="Left" Margin="142,237,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="rptevntchkbx" Content="Repeat Event" HorizontalAlignment="Left" Margin="142,237,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

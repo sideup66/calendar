@@ -31,6 +31,7 @@ namespace calendartest
             //write the entry to the table
             using (SQLiteConnection dbconnection = new SQLiteConnection("DataSource=calendardb.db;Version=3;"))
             {
+                //declare som variables
                 dbconnection.Open();
                 int blockprogs = 0;
                 int blocksites = 0;
@@ -49,21 +50,31 @@ namespace calendartest
                 {
                     wkday = day.ReadLine();
                 }
-                //use an if statement, if wkday is the current day, set the schedule for the same day
-
-                //find the next day using what is in the readline
-                int advclock = 1;
-                //string setdate = DateTime.Today.DayOfWeek.ToString();
-                string setdate = DateTime.Today.AddDays(advclock).DayOfWeek.ToString();
-                while (wkday != setdate)
+                //if the user is using a recurring schedule, the db works a bit different. So we will need a different write 
+                if (rptevntchkbx.IsChecked == true)
                 {
-                    setdate = DateTime.Today.AddDays(advclock).DayOfWeek.ToString();
-                    advclock++;
+                    //we dont care about the date,long as the day of the week matches, we can go
+                    sql = "insert into Recurrance_Events (Day_of_Week, Event_Name, Start_Time, End_Time, Block_Programs, Block_Websites) values ('" + wkday + "', '" + evntnmtxtbx.Text + "', '" + strttmpicker.Text + " " + strttmampm.Text + "', '" + endtmpicker.Text + " " + endtmampm.Text + "', " + blocksites + " , " + blockprogs + ")";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
                 }
-                setdate = DateTime.Today.AddDays(advclock).ToString("MM-dd");
-                sql = "insert into Single_Events (Creation_Date, Event_Name, Start_Time, End_Time, Block_Sites, Block_Programs) values ('" + setdate + "', '" + evntnmtxtbx.Text + "', '" + strttmpicker.Text + " " + strttmampm.Text + "', '" + endtmpicker.Text + " " + endtmampm.Text + "', " + blockprogs + " , " + blocksites + ")";
-                command = new SQLiteCommand(sql, dbconnection);
-                command.ExecuteNonQuery();
+                else
+                {
+                    //find the next day using what is in the readline
+                    int advclock = 0;
+                    string setdate = DateTime.Today.AddDays(advclock).DayOfWeek.ToString();
+                    while (wkday != setdate)
+                    {
+                        setdate = DateTime.Today.AddDays(advclock).DayOfWeek.ToString();
+                        advclock++;
+                    }
+                    //adjust for a 1 day offset 
+                    advclock--;
+                    setdate = DateTime.Today.AddDays(advclock).ToString("MM-dd");
+                    sql = "insert into Single_Events (Creation_Date, Event_Name, Start_Time, End_Time, Block_Sites, Block_Programs) values ('" + setdate + "', '" + evntnmtxtbx.Text + "', '" + strttmpicker.Text + " " + strttmampm.Text + "', '" + endtmpicker.Text + " " + endtmampm.Text + "', " + blockprogs + " , " + blocksites + ")";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                }
                 dbconnection.Close();
             }
         }
