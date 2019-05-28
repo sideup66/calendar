@@ -49,6 +49,7 @@ namespace calendartest
                 using (StreamReader day = new StreamReader("day.txt"))
                 {
                     wkday = day.ReadLine();
+                    day.Close();
                 }
                 //if the user is using a recurring schedule, the db works a bit different. So we will need a different write 
                 if (rptevntchkbx.IsChecked == true)
@@ -103,6 +104,112 @@ namespace calendartest
 
                 }
                 min++;
+            }
+            //read in the write file, if the first line contains edit, we are editing an existing entry
+            using (StreamReader reader = new StreamReader("day.txt"))
+            {
+                string check = reader.ReadLine();
+                reader.Close();
+                    if(check.Contains("edit"))
+                {
+                    //we are editing at this point, we need to read in what is there and note the date as we will NOT be calculating this
+                    loaddb();  
+                }
+
+            }
+        }
+
+        private void loaddb()
+        {
+            //load in data from the database when editing an item.
+            using (SQLiteConnection dbconnection = new SQLiteConnection("DataSource=calendardb.db;Version=3;"))
+            {
+                dbconnection.Open();
+                string desc;
+                using (StreamReader readin = new StreamReader("day.txt"))
+                {
+                    readin.ReadLine();
+                    desc = readin.ReadLine();
+                    readin.Close();
+                }
+                string sql = "select * from single_events where Event_Name= " + "'" + desc + "'";
+                SQLiteCommand command = new SQLiteCommand(sql, dbconnection);
+                SQLiteDataReader reader = command.ExecuteReader();
+                //little string for adjusting input for some fields
+                string tofix;
+                while (reader.Read())
+                    {
+                    //fill in the form
+                    evntnmtxtbx.Text = reader["Event_Name"].ToString();
+                    //get the start time
+                    tofix = reader["Start_Time"].ToString();
+                    tofix = tofix.Replace("AM", "");
+                    tofix = tofix.Replace("PM", "");
+                    strttmpicker.Text = tofix;
+                    tofix = reader["Start_Time"].ToString();
+                    tofix = tofix.Substring(tofix.IndexOf(" ") + 1);
+                    strttmampm.Text = tofix;
+
+                    //set the endtime
+                    tofix = reader["End_Time"].ToString();
+                    tofix = tofix.Replace("AM", "");
+                    tofix = tofix.Replace("PM", "");
+                    endtmpicker.Text = tofix;
+                    tofix = reader["End_Time"].ToString();
+                    tofix = tofix.Substring(tofix.IndexOf(" ") + 1);
+                    endtmampm.Text = tofix;
+
+                    //now set the blocked proram or site option
+                    if (reader["Block_Sites"].ToString().Contains("1"))
+                    {
+                        blkwebstbtn.IsChecked = true;
+                    }
+
+                    if (reader["Block_Programs"].ToString().Contains("1"))
+                    {
+                        blkprogramchkbx.IsChecked = true;
+                    }
+                }
+                //if nothing was found for normal events, try recurring
+                sql = "select * from Recurrance_Events where Event_Name= " + "'" + desc + "'";
+                command = new SQLiteCommand(sql, dbconnection);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    //fill in the form
+                    evntnmtxtbx.Text = reader["Event_Name"].ToString();
+                    //get the start time
+                    tofix = reader["Start_Time"].ToString();
+                    tofix = tofix.Replace("AM", "");
+                    tofix = tofix.Replace("PM", "");
+                    strttmpicker.Text = tofix;
+                    tofix = reader["Start_Time"].ToString();
+                    tofix = tofix.Substring(tofix.IndexOf(" ") + 1);
+                    strttmampm.Text = tofix;
+
+                    //set the endtime
+                    tofix = reader["End_Time"].ToString();
+                    tofix = tofix.Replace("AM", "");
+                    tofix = tofix.Replace("PM", "");
+                    endtmpicker.Text = tofix;
+                    tofix = reader["End_Time"].ToString();
+                    tofix = tofix.Substring(tofix.IndexOf(" ") + 1);
+                    endtmampm.Text = tofix;
+
+                    //now set the blocked proram or site option
+                    if (reader["Block_Sites"].ToString().Contains("1"))
+                    {
+                        blkwebstbtn.IsChecked = true;
+                    }
+
+                    if (reader["Block_Programs"].ToString().Contains("1"))
+                    {
+                        blkprogramchkbx.IsChecked = true;
+                    }
+                    //last, we check the recurrance checkbox to deal with repeating events.
+                    rptevntchkbx.IsChecked = true;
+                }
+                dbconnection.Close();
             }
         }
 

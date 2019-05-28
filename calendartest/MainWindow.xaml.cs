@@ -30,15 +30,27 @@ namespace calendartest
 
         private void Sunlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //if were not selecting the add item we are editing.
+            //for showing the edit dialog
+            addentry frm2 = new addentry();
+
+            //if were not selecting the add item we are editing
             if (sunlist.SelectedIndex != 0)
             {
                 MessageBox.Show("you are editing an item.");
+                using (StreamWriter editflag = new StreamWriter("day.txt"))
+                {
+                    editflag.WriteLine("edit");
+                    editflag.WriteLine(sunlist.SelectedItem.ToString());
+                    editflag.Close();
+                    frm2.ShowDialog();
+                    calendarcleanup();
+                    refreshcalendar();
+                }
+
             }
             if (sunlist.SelectedIndex == 0)
             {
-                //create a new item
-                addentry frm2 = new addentry();
+               
                 using (StreamWriter day = new StreamWriter("day.txt"))
                 {
                     day.WriteLine("Sunday");
@@ -52,15 +64,28 @@ namespace calendartest
 
         private void Monlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //create a new item
+            addentry frm2 = new addentry();
+
             //if were not selecting the add item we are editing.
             if (monlist.SelectedIndex != 0)
             {
+
                 MessageBox.Show("you are editing an item.");
+                using (StreamWriter editflag = new StreamWriter("day.txt"))
+                {
+                    editflag.WriteLine("edit");
+                    editflag.WriteLine(monlist.SelectedItem.ToString());
+                    editflag.Close();
+                    frm2.ShowDialog();
+                    calendarcleanup();
+                    refreshcalendar();
+                }
+
             }
             if (monlist.SelectedIndex == 0)
             {
-                //create a new item
-                addentry frm2 = new addentry();
+                //new entry
                 using (StreamWriter day = new StreamWriter("day.txt"))
                 {
                     day.WriteLine("Monday");
@@ -73,15 +98,27 @@ namespace calendartest
         }
         private void tuelist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //create a new item for the add dialog
+            addentry frm2 = new addentry();
+
             //if were not selecting the add item we are editing.
             if (tuelist.SelectedIndex != 0)
             {
+
                 MessageBox.Show("you are editing an item.");
+                using (StreamWriter editflag = new StreamWriter("day.txt"))
+                {
+                    editflag.WriteLine("edit");
+                    editflag.WriteLine(tuelist.SelectedItem.ToString());
+                    editflag.Close();
+                    frm2.ShowDialog();
+                    calendarcleanup();
+                    refreshcalendar();
+                }
             }
             if (tuelist.SelectedIndex == 0)
             {
-                //create a new item
-                addentry frm2 = new addentry();
+
                 using (StreamWriter day = new StreamWriter("day.txt"))
                 {
                     day.WriteLine("Tuesday");
@@ -94,15 +131,26 @@ namespace calendartest
         }
         private void wedlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //create a new item for the edit dialog
+            addentry frm2 = new addentry();
+
             //if were not selecting the add item we are editing.
             if (wedlist.SelectedIndex != 0)
             {
                 MessageBox.Show("you are editing an item.");
+                using (StreamWriter editflag = new StreamWriter("day.txt"))
+                {
+                    editflag.WriteLine("edit");
+                    editflag.WriteLine(monlist.SelectedItem.ToString());
+                    editflag.Close();
+                    frm2.ShowDialog();
+                    calendarcleanup();
+                    refreshcalendar();
+                }
             }
             if (wedlist.SelectedIndex == 0)
             {
-                //create a new item
-                addentry frm2 = new addentry();
+                
                 using (StreamWriter day = new StreamWriter("day.txt"))
                 {
                     day.WriteLine("Wednesday");
@@ -115,15 +163,26 @@ namespace calendartest
         }
         private void thurlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //create a new item for the edit dialog
+            addentry frm2 = new addentry();
+
             //if were not selecting the add item we are editing.
             if (thurlist.SelectedIndex != 0)
             {
                 MessageBox.Show("you are editing an item.");
+                using (StreamWriter editflag = new StreamWriter("day.txt"))
+                {
+                    editflag.WriteLine("edit");
+                    editflag.WriteLine(thurlist.SelectedItem.ToString());
+                    editflag.Close();
+                    frm2.ShowDialog();
+                    calendarcleanup();
+                    refreshcalendar();
+                }
             }
             if (thurlist.SelectedIndex == 0)
             {
-                //create a new item
-                addentry frm2 = new addentry();
+                
                 using (StreamWriter day = new StreamWriter("day.txt"))
                 {
                     day.WriteLine("Thursday");
@@ -136,15 +195,27 @@ namespace calendartest
         }
         private void frilist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //create a new item for the edit dialog
+            addentry frm2 = new addentry();
+
             //if were not selecting the add item we are editing.
             if (frilist.SelectedIndex != 0)
             {
                 MessageBox.Show("you are editing an item.");
+                using (StreamWriter editflag = new StreamWriter("day.txt"))
+                {
+                    editflag.WriteLine("edit");
+                    editflag.WriteLine(frilist.SelectedItem.ToString());
+                    editflag.Close();
+                    frm2.ShowDialog();
+                    calendarcleanup();
+                    refreshcalendar();
+                }
+
             }
             if (frilist.SelectedIndex == 0)
             {
                 //create a new item
-                addentry frm2 = new addentry();
                 using (StreamWriter day = new StreamWriter("day.txt"))
                 {
                     day.WriteLine("Friday");
@@ -158,15 +229,26 @@ namespace calendartest
         }
         private void satlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //create a new item for the edit dialog
+            addentry frm2 = new addentry();
+
             //if were not selecting the add item we are editing.
             if (satlist.SelectedIndex != 0)
             {
                 MessageBox.Show("you are editing an item.");
+                using (StreamWriter editflag = new StreamWriter("day.txt"))
+                {
+                    editflag.WriteLine("edit");
+                    editflag.WriteLine(satlist.SelectedItem.ToString());
+                    editflag.Close();
+                    frm2.ShowDialog();
+                    calendarcleanup();
+                    refreshcalendar();
+                }
+
             }
             if (satlist.SelectedIndex == 0)
             {
-                //create a new item
-                addentry frm2 = new addentry();
                 using (StreamWriter day = new StreamWriter("day.txt"))
                 {
                     day.WriteLine("Saturday");
@@ -228,7 +310,7 @@ namespace calendartest
             using (SQLiteConnection dbconnection = new SQLiteConnection("DataSource=calendardb.db;Version=3;"))
             {
                 dbconnection.Open();
-                //read in everything from the calendar and put it in the 
+                //read in everything from the calendar db and put it in the ui
                 string sql = "select * from single_events order by Creation_Date";
 
                 SQLiteCommand command = new SQLiteCommand(sql, dbconnection);
@@ -274,8 +356,54 @@ namespace calendartest
                         satlist.Items.Add(reader["Event_Name"]);
                     }
                 }
-            }
-        }
+
+                //populate the recurrance events now
+                sql = "select* from Recurrance_events order by id";
+                command= new SQLiteCommand(sql, dbconnection);
+                reader =  command.ExecuteReader();
+                while (reader.Read())
+                {
+                    //fill out the calendar
+                    dbdate = reader["Day_of_Week"].ToString();
+                    if (dbdate.Contains("Sunday"))
+                    {
+                        //add the value to the sunday list
+                        sunlist.Items.Add(reader["Event_Name"]);
+                    }
+                    else if (dbdate.Contains("Monday"))
+                    {
+                        monlist.Items.Add(reader["Event_Name"]);
+
+                    }
+                    else if (dbdate.Contains("Tuesday"))
+                    {
+                        tuelist.Items.Add(reader["Event_Name"]);
+
+                    }
+                    else if (dbdate.Contains("Wednesday"))
+                    {
+                        wedlist.Items.Add(reader["Event_Name"]);
+                    }
+                    else if (dbdate.Contains("Thursday"))
+                    {
+                        thurlist.Items.Add(reader["Event_Name"]);
+                    }
+                    else if (dbdate.Contains("Friday"))
+                    {
+                        frilist.Items.Add(reader["Event_Name"]);
+                    }
+                    else if (dbdate.Contains("Saturday"))
+                    {
+                        satlist.Items.Add(reader["Event_Name"]);
+                    }
+                }
+                //close off the db
+                dbconnection.Close();
+             }
+
+
+         }
+        
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
