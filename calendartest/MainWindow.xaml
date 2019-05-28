@@ -19,7 +19,7 @@
         <TextBlock Text="Sunday" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
         <TextBlock Text="Monday" Grid.Row="0" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
         <TextBlock Text="Tuesday" Grid.Row="0" Grid.Column="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Text="Wednsday" Grid.Row="0" Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="Wednesday" Grid.Row="0" Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
         <TextBlock Text="Thursday" Grid.Row="0" Grid.Column="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
         <TextBlock Text="Friday" Grid.Row="0" Grid.Column="5" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
         <TextBlock Text="Satuday" Grid.Row="0" Grid.Column="6" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>

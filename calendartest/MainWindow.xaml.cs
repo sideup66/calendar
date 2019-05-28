@@ -34,17 +34,36 @@ namespace calendartest
             addentry frm2 = new addentry();
 
             //if were not selecting the add item we are editing
+           
             if (sunlist.SelectedIndex != 0)
             {
-                MessageBox.Show("you are editing an item.");
                 using (StreamWriter editflag = new StreamWriter("day.txt"))
                 {
-                    editflag.WriteLine("edit");
-                    editflag.WriteLine(sunlist.SelectedItem.ToString());
-                    editflag.Close();
-                    frm2.ShowDialog();
-                    calendarcleanup();
-                    refreshcalendar();
+                    try
+                    {
+                        editflag.WriteLine("edit");
+                        editflag.WriteLine(sunlist.SelectedItem.ToString());
+                        editflag.Close();
+                        frm2.ShowDialog();
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
+                    catch (Exception)
+                    {
+                        //close the streamwriter
+                        editflag.Close();
+
+                        MessageBox.Show("Editing item failed, creating a new entry!");
+                        using (StreamWriter day = new StreamWriter("day.txt"))
+                        {
+                            day.WriteLine("Sunday");
+                            day.Close();
+                        }
+                        frm2.ShowDialog();
+                        //refresh the calendar when we are done
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
                 }
 
             }
@@ -54,6 +73,7 @@ namespace calendartest
                 using (StreamWriter day = new StreamWriter("day.txt"))
                 {
                     day.WriteLine("Sunday");
+                    day.Close();
                 }
                 frm2.ShowDialog();
                 //refresh the calendar when we are done
@@ -71,16 +91,35 @@ namespace calendartest
             if (monlist.SelectedIndex != 0)
             {
 
-                MessageBox.Show("you are editing an item.");
                 using (StreamWriter editflag = new StreamWriter("day.txt"))
                 {
-                    editflag.WriteLine("edit");
-                    editflag.WriteLine(monlist.SelectedItem.ToString());
-                    editflag.Close();
-                    frm2.ShowDialog();
-                    calendarcleanup();
-                    refreshcalendar();
+                    try
+                    {
+                        editflag.WriteLine("edit");
+                        editflag.WriteLine(monlist.SelectedItem.ToString());
+                        editflag.Close();
+                        frm2.ShowDialog();
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
+                    catch (Exception)
+                    {
+                        //close the streamwriter
+                        editflag.Close();
+
+                        MessageBox.Show("Editing item failed, creating a new entry!");
+                        using (StreamWriter day = new StreamWriter("day.txt"))
+                        {
+                            day.WriteLine("Monday");
+                            day.Close();
+                        }
+                        frm2.ShowDialog();
+                        //refresh the calendar when we are done
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
                 }
+
 
             }
             if (monlist.SelectedIndex == 0)
@@ -104,17 +143,35 @@ namespace calendartest
             //if were not selecting the add item we are editing.
             if (tuelist.SelectedIndex != 0)
             {
-
-                MessageBox.Show("you are editing an item.");
                 using (StreamWriter editflag = new StreamWriter("day.txt"))
                 {
-                    editflag.WriteLine("edit");
-                    editflag.WriteLine(tuelist.SelectedItem.ToString());
-                    editflag.Close();
-                    frm2.ShowDialog();
-                    calendarcleanup();
-                    refreshcalendar();
+                    try
+                    {
+                        editflag.WriteLine("edit");
+                        editflag.WriteLine(tuelist.SelectedItem.ToString());
+                        editflag.Close();
+                        frm2.ShowDialog();
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
+                    catch (Exception)
+                    {
+                        //close the streamwriter
+                        editflag.Close();
+
+                        MessageBox.Show("Editing item failed, creating a new entry!");
+                        using (StreamWriter day = new StreamWriter("day.txt"))
+                        {
+                            day.WriteLine("Tuesday");
+                            day.Close();
+                        }
+                        frm2.ShowDialog();
+                        //refresh the calendar when we are done
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
                 }
+
             }
             if (tuelist.SelectedIndex == 0)
             {
@@ -137,15 +194,33 @@ namespace calendartest
             //if were not selecting the add item we are editing.
             if (wedlist.SelectedIndex != 0)
             {
-                MessageBox.Show("you are editing an item.");
                 using (StreamWriter editflag = new StreamWriter("day.txt"))
                 {
-                    editflag.WriteLine("edit");
-                    editflag.WriteLine(monlist.SelectedItem.ToString());
-                    editflag.Close();
-                    frm2.ShowDialog();
-                    calendarcleanup();
-                    refreshcalendar();
+                    try
+                    {
+                        editflag.WriteLine("edit");
+                        editflag.WriteLine(wedlist.SelectedItem.ToString());
+                        editflag.Close();
+                        frm2.ShowDialog();
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
+                    catch (Exception)
+                    {
+                        //close the streamwriter
+                        editflag.Close();
+
+                        MessageBox.Show("Editing item failed, creating a new entry!");
+                        using (StreamWriter day = new StreamWriter("day.txt"))
+                        {
+                            day.WriteLine("Wednesday");
+                            day.Close();
+                        }
+                        frm2.ShowDialog();
+                        //refresh the calendar when we are done
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
                 }
             }
             if (wedlist.SelectedIndex == 0)
@@ -169,17 +244,36 @@ namespace calendartest
             //if were not selecting the add item we are editing.
             if (thurlist.SelectedIndex != 0)
             {
-                MessageBox.Show("you are editing an item.");
                 using (StreamWriter editflag = new StreamWriter("day.txt"))
                 {
-                    editflag.WriteLine("edit");
-                    editflag.WriteLine(thurlist.SelectedItem.ToString());
-                    editflag.Close();
-                    frm2.ShowDialog();
-                    calendarcleanup();
-                    refreshcalendar();
+                    try
+                    {
+                        editflag.WriteLine("edit");
+                        editflag.WriteLine(thurlist.SelectedItem.ToString());
+                        editflag.Close();
+                        frm2.ShowDialog();
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
+                    catch (Exception)
+                    {
+                        //close the streamwriter
+                        editflag.Close();
+
+                        MessageBox.Show("Editing item failed, creating a new entry!");
+                        using (StreamWriter day = new StreamWriter("day.txt"))
+                        {
+                            day.WriteLine("Thursday");
+                            day.Close();
+                        }
+                        frm2.ShowDialog();
+                        //refresh the calendar when we are done
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
                 }
             }
+
             if (thurlist.SelectedIndex == 0)
             {
                 
@@ -201,17 +295,34 @@ namespace calendartest
             //if were not selecting the add item we are editing.
             if (frilist.SelectedIndex != 0)
             {
-                MessageBox.Show("you are editing an item.");
                 using (StreamWriter editflag = new StreamWriter("day.txt"))
                 {
-                    editflag.WriteLine("edit");
-                    editflag.WriteLine(frilist.SelectedItem.ToString());
-                    editflag.Close();
-                    frm2.ShowDialog();
-                    calendarcleanup();
-                    refreshcalendar();
-                }
+                    try
+                    {
+                        editflag.WriteLine("edit");
+                        editflag.WriteLine(frilist.SelectedItem.ToString());
+                        editflag.Close();
+                        frm2.ShowDialog();
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
+                    catch (Exception)
+                    {
+                        //close the streamwriter
+                        editflag.Close();
 
+                        MessageBox.Show("Editing item failed, creating a new entry!");
+                        using (StreamWriter day = new StreamWriter("day.txt"))
+                        {
+                            day.WriteLine("Friday");
+                            day.Close();
+                        }
+                        frm2.ShowDialog();
+                        //refresh the calendar when we are done
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
+                }
             }
             if (frilist.SelectedIndex == 0)
             {
@@ -235,15 +346,33 @@ namespace calendartest
             //if were not selecting the add item we are editing.
             if (satlist.SelectedIndex != 0)
             {
-                MessageBox.Show("you are editing an item.");
                 using (StreamWriter editflag = new StreamWriter("day.txt"))
                 {
-                    editflag.WriteLine("edit");
-                    editflag.WriteLine(satlist.SelectedItem.ToString());
-                    editflag.Close();
-                    frm2.ShowDialog();
-                    calendarcleanup();
-                    refreshcalendar();
+                    try
+                    {
+                        editflag.WriteLine("edit");
+                        editflag.WriteLine(satlist.SelectedItem.ToString());
+                        editflag.Close();
+                        frm2.ShowDialog();
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
+                    catch (Exception)
+                    {
+                        //close the streamwriter
+                        editflag.Close();
+
+                        MessageBox.Show("Editing item failed, creating a new entry!");
+                        using (StreamWriter day = new StreamWriter("day.txt"))
+                        {
+                            day.WriteLine("Saturday");
+                            day.Close();
+                        }
+                        frm2.ShowDialog();
+                        //refresh the calendar when we are done
+                        calendarcleanup();
+                        refreshcalendar();
+                    }
                 }
 
             }
