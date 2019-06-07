@@ -18,8 +18,13 @@ namespace calendartest
     /// <summary>
     /// Interaction logic for addentry.xaml
     /// </summary>
+    /// 
+
     public partial class addentry : Window
     {
+        //string to store the id of an entry from the table if we are updating a value
+        string id;
+
         public addentry()
         {
             InitializeComponent();
@@ -78,6 +83,43 @@ namespace calendartest
                 }
                 dbconnection.Close();
             }
+        }
+
+        void updatedb()
+        {
+            //TODO: Finish update query
+            //here, we are just updating the db, so our write should be simple, but we are only UPDATING AN EXISTING RECORD
+            using (SQLiteConnection dbconnection = new SQLiteConnection("DataSource=calendardb.db;Version=3;"))
+            {
+                dbconnection.Open();
+                string sql;
+                SQLiteCommand command;
+                int blockprogs = 0;
+                int blocksites = 0;
+                //determine position of checkboxes for db
+                if (blkprogramchkbx.IsChecked == true)
+                {
+                    blockprogs = 1;
+                }
+                if (blkwebstbtn.IsChecked == true)
+                {
+                    blocksites = 1;
+                }
+
+                //determine if we are updating the recurring table or the current one, then enter information
+                if (rptevntchkbx.IsChecked == true)
+                {
+                    //use the recurring db query
+                    sql = "UPDATE Recurrance_events SET Event_Name = '" + evntnmtxtbx.Text + "', Start_Time = '" + strttmpicker.Text + " " + strttmampm.Text + "', End_Time = '" + endtmpicker.Text + " " + endtmampm.Text + "', Block_Programs = '" + blockprogs + "', Block_WebSites = '" + blocksites + "' WHERE id =" + id;
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    //use the standard update query
+                }
+            }
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -139,6 +181,8 @@ namespace calendartest
                 string tofix;
                 while (reader.Read())
                     {
+                    //store the id
+                    id = reader["id"].ToString();
                     //fill in the form
                     evntnmtxtbx.Text = reader["Event_Name"].ToString();
                     //get the start time
@@ -160,7 +204,7 @@ namespace calendartest
                     endtmampm.Text = tofix;
 
                     //now set the blocked proram or site option
-                    if (reader["Block_Sites"].ToString().Contains("1"))
+                    if (reader["Block_WebSites"].ToString().Contains("1"))
                     {
                         blkwebstbtn.IsChecked = true;
                     }
@@ -176,12 +220,15 @@ namespace calendartest
                 reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    //store the id
+                    id = reader["id"].ToString();
                     //fill in the form
                     evntnmtxtbx.Text = reader["Event_Name"].ToString();
                     //get the start time
                     tofix = reader["Start_Time"].ToString();
                     tofix = tofix.Replace("AM", "");
                     tofix = tofix.Replace("PM", "");
+                    tofix = tofix.Replace(" ", "");
                     strttmpicker.Text = tofix;
                     tofix = reader["Start_Time"].ToString();
                     tofix = tofix.Substring(tofix.IndexOf(" ") + 1);
@@ -191,13 +238,14 @@ namespace calendartest
                     tofix = reader["End_Time"].ToString();
                     tofix = tofix.Replace("AM", "");
                     tofix = tofix.Replace("PM", "");
+                    tofix = tofix.Replace(" ", "");
                     endtmpicker.Text = tofix;
                     tofix = reader["End_Time"].ToString();
                     tofix = tofix.Substring(tofix.IndexOf(" ") + 1);
                     endtmampm.Text = tofix;
 
                     //now set the blocked proram or site option
-                    if (reader["Block_Sites"].ToString().Contains("1"))
+                    if (reader["Block_WebSites"].ToString().Contains("1"))
                     {
                         blkwebstbtn.IsChecked = true;
                     }
@@ -252,8 +300,23 @@ namespace calendartest
 
         private void Addbtn_Click(object sender, RoutedEventArgs e)
         {
-            //write to the database and close
-            dbwriter();
+            //if this is an edit to an existing entry, we run an update routine, otherwise standard write then close
+            using (StreamReader reader = new StreamReader("day.txt"))
+            {
+                string str = reader.ReadLine();
+                reader.Close();
+                if (str.Contains("edit"))
+                {
+                    //run the updater
+                    updatedb();
+                }
+                else
+                {
+                    //write normally
+                    dbwriter();
+                }
+                reader.Close();
+            }
             this.Close();
         }
     }
