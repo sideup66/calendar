@@ -77,7 +77,7 @@ namespace calendartest
                     //adjust for a 1 day offset 
                     advclock--;
                     setdate = DateTime.Today.AddDays(advclock).ToString("MM-dd");
-                    sql = "insert into Single_Events (Creation_Date, Event_Name, Start_Time, End_Time, Block_Sites, Block_Programs) values ('" + setdate + "', '" + evntnmtxtbx.Text + "', '" + strttmpicker.Text + " " + strttmampm.Text + "', '" + endtmpicker.Text + " " + endtmampm.Text + "', " + blockprogs + " , " + blocksites + ")";
+                    sql = "insert into Single_Events (Creation_Date, Event_Name, Start_Time, End_Time, Block_WebSites, Block_Programs) values ('" + setdate + "', '" + evntnmtxtbx.Text + "', '" + strttmpicker.Text + " " + strttmampm.Text + "', '" + endtmpicker.Text + " " + endtmampm.Text + "', " + blockprogs + " , " + blocksites + ")";
                     command = new SQLiteCommand(sql, dbconnection);
                     command.ExecuteNonQuery();
                 }
@@ -113,10 +113,15 @@ namespace calendartest
                     sql = "UPDATE Recurrance_events SET Event_Name = '" + evntnmtxtbx.Text + "', Start_Time = '" + strttmpicker.Text + " " + strttmampm.Text + "', End_Time = '" + endtmpicker.Text + " " + endtmampm.Text + "', Block_Programs = '" + blockprogs + "', Block_WebSites = '" + blocksites + "' WHERE id =" + id;
                     command = new SQLiteCommand(sql, dbconnection);
                     command.ExecuteNonQuery();
+                    dbconnection.Close();
                 }
                 else
                 {
                     //use the standard update query
+                    sql = "UPDATE Single_Events SET Event_Name = '" + evntnmtxtbx.Text + "', Start_Time = '" + strttmpicker.Text + " " + strttmampm.Text + "', End_Time = '" + endtmpicker.Text + " " + endtmampm.Text + "', Block_Programs = '" + blockprogs + "', Block_WebSites = '" + blocksites + "' WHERE id =" + id;
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                    dbconnection.Close();
                 }
             }
 
@@ -204,7 +209,7 @@ namespace calendartest
                     endtmampm.Text = tofix;
 
                     //now set the blocked proram or site option
-                    if (reader["Block_WebSites"].ToString().Contains("1"))
+                    if (reader["Block_Websites"].ToString().Contains("1"))
                     {
                         blkwebstbtn.IsChecked = true;
                     }
