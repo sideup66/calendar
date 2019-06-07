@@ -194,6 +194,7 @@ namespace calendartest
                     tofix = reader["Start_Time"].ToString();
                     tofix = tofix.Replace("AM", "");
                     tofix = tofix.Replace("PM", "");
+                    tofix = tofix.Replace(" ", "");
                     strttmpicker.Text = tofix;
                     tofix = reader["Start_Time"].ToString();
                     tofix = tofix.Substring(tofix.IndexOf(" ") + 1);
@@ -203,6 +204,7 @@ namespace calendartest
                     tofix = reader["End_Time"].ToString();
                     tofix = tofix.Replace("AM", "");
                     tofix = tofix.Replace("PM", "");
+                    tofix = tofix.Replace(" ", "");
                     endtmpicker.Text = tofix;
                     tofix = reader["End_Time"].ToString();
                     tofix = tofix.Substring(tofix.IndexOf(" ") + 1);
