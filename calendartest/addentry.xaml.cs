@@ -110,7 +110,7 @@ namespace calendartest
                 if (rptevntchkbx.IsChecked == true)
                 {
                     //use the recurring db query
-                    sql = "UPDATE Recurrance_events SET Event_Name = '" + evntnmtxtbx.Text + "', Start_Time = '" + strttmpicker.Text + " " + strttmampm.Text + "', End_Time = '" + endtmpicker.Text + " " + endtmampm.Text + "', Block_Programs = '" + blockprogs + "', Block_WebSites = '" + blocksites + "' WHERE id =" + id;
+                    sql = "UPDATE Recurrance_events SET Event_Name = '" + evntnmtxtbx.Text + "', Start_Time = '" + strttmpicker.Text + " " + strttmampm.Text + "', End_Time = '" + endtmpicker.Text + " " + endtmampm.Text + "', Block_Programs = '" + blockprogs + "', Block_Websites = '" + blocksites + "' WHERE id =" + id;
                     command = new SQLiteCommand(sql, dbconnection);
                     command.ExecuteNonQuery();
                     dbconnection.Close();
@@ -118,7 +118,7 @@ namespace calendartest
                 else
                 {
                     //use the standard update query
-                    sql = "UPDATE Single_Events SET Event_Name = '" + evntnmtxtbx.Text + "', Start_Time = '" + strttmpicker.Text + " " + strttmampm.Text + "', End_Time = '" + endtmpicker.Text + " " + endtmampm.Text + "', Block_Programs = '" + blockprogs + "', Block_WebSites = '" + blocksites + "' WHERE id =" + id;
+                    sql = "UPDATE Single_Events SET Event_Name = '" + evntnmtxtbx.Text + "', Start_Time = '" + strttmpicker.Text + " " + strttmampm.Text + "', End_Time = '" + endtmpicker.Text + " " + endtmampm.Text + "', Block_Programs = '" + blockprogs + "', Block_Websites = '" + blocksites + "' WHERE id =" + id;
                     command = new SQLiteCommand(sql, dbconnection);
                     command.ExecuteNonQuery();
                     dbconnection.Close();
@@ -250,7 +250,7 @@ namespace calendartest
                     endtmampm.Text = tofix;
 
                     //now set the blocked proram or site option
-                    if (reader["Block_WebSites"].ToString().Contains("1"))
+                    if (reader["Block_Websites"].ToString().Contains("1"))
                     {
                         blkwebstbtn.IsChecked = true;
                     }
