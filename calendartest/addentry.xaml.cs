@@ -87,7 +87,6 @@ namespace calendartest
 
         void updatedb()
         {
-            //TODO: Finish update query
             //here, we are just updating the db, so our write should be simple, but we are only UPDATING AN EXISTING RECORD
             using (SQLiteConnection dbconnection = new SQLiteConnection("DataSource=calendardb.db;Version=3;"))
             {

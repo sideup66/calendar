@@ -25,24 +25,59 @@
         <TextBlock Text="Satuday" Grid.Row="0" Grid.Column="6" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
         <ListBox x:Name="sunlist" Grid.Row="1" Grid.Column="0" MouseDoubleClick="Sunlist_MouseDoubleClick" >
             <ListBoxItem x:Name="new_sun" Content="click here"/>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                <MenuItem Header= "Delete" Click="MenuItem_Click" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
         <ListBox x:Name="monlist" Grid.Row="1" Grid.Column="1" MouseDoubleClick="Monlist_MouseDoubleClick" >
             <ListBoxItem x:Name="new_mon" Content="click here"/>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header= "Delete" Click="MenuItem_Click_1"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
         <ListBox x:Name="tuelist" Grid.Row="1" Grid.Column="2" MouseDoubleClick="tuelist_MouseDoubleClick" >
             <ListBoxItem x:Name="new_tue" Content="click here" />
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header= "Delete" Click="MenuItem_Click_2"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
         <ListBox x:Name="wedlist" Grid.Row="1" Grid.Column="3" MouseDoubleClick="wedlist_MouseDoubleClick" >
             <ListBoxItem x:Name="new_wed" Content="click here"/>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header= "Delete" Click="MenuItem_Click_3"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
         <ListBox x:Name="thurlist" Grid.Row="1" Grid.Column="4" MouseDoubleClick="thurlist_MouseDoubleClick" >
             <ListBoxItem x:Name="new_thurs" Content="click here"/>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header= "Delete" Click="MenuItem_Click_4"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
         <ListBox x:Name="frilist" Grid.Row="1" Grid.Column="5" MouseDoubleClick="frilist_MouseDoubleClick" >
             <ListBoxItem x:Name="new_fri" Content="click here"/>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header= "Delete" Click="MenuItem_Click_5"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
         <ListBox x:Name="satlist" Grid.Row="1" Grid.Column="6" MouseDoubleClick="satlist_MouseDoubleClick" >
             <ListBoxItem x:Name="new_sat" Content="click here"/>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header= "Delete" Click="MenuItem_Click_6"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
     </Grid>
 </Window>    

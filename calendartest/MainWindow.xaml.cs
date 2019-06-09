@@ -540,5 +540,146 @@ namespace calendartest
             Cleanupdb();
             refreshcalendar();
         }
+
+        private void delentry(string day)
+        {
+            using (SQLiteConnection dbconnection = new SQLiteConnection("DataSource=calendardb.db;Version=3;"))
+            {
+                string sql;
+                SQLiteCommand command;
+                dbconnection.Open();
+                //here we will delete entries in the db based on the day passed in from the context menu. run the query on both tables to make sure it works
+
+                if (day == "sun")
+                {
+                    //do it for sunday
+                    sql = "DELETE from single_events WHERE Event_Name = '" + sunlist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                    sql = "DELETE from Recurrance_Events WHERE Event_Name = '" + sunlist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                }
+                if (day == "mon")
+                {
+                    //do it for monday
+                    sql = "DELETE from single_events WHERE Event_Name = '" + monlist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                    sql = "DELETE from Recurrance_Events WHERE Event_Name = '" + monlist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                }
+                if (day == "tue")
+                {
+                    //do it for sunday
+                    sql = "DELETE from single_events WHERE Event_Name = '" + tuelist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                    sql = "DELETE from Recurrance_Events WHERE Event_Name = '" + tuelist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                }
+                if (day == "wed")
+                {
+                    //do it for sunday
+                    sql = "DELETE from single_events WHERE Event_Name = '" + wedlist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                    sql = "DELETE from Recurrance_Events WHERE Event_Name = '" + wedlist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                }
+                if (day == "thurs")
+                {
+                    //do it for sunday
+                    sql = "DELETE from single_events WHERE Event_Name = '" + thurlist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                    sql = "DELETE from Recurrance_Events WHERE Event_Name = '" + thurlist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                }
+                if (day == "fri")
+                {
+                    //do it for sunday
+                    sql = "DELETE from single_events WHERE Event_Name = '" + frilist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                    sql = "DELETE from Recurrance_Events WHERE Event_Name = '" + frilist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                }
+                if (day == "sat")
+                {
+                    //do it for sunday
+                    sql = "DELETE from single_events WHERE Event_Name = '" + satlist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                    sql = "DELETE from Recurrance_Events WHERE Event_Name = '" + satlist.SelectedItem.ToString() + "'";
+                    command = new SQLiteCommand(sql, dbconnection);
+                    command.ExecuteNonQuery();
+                }
+                //close the db connection
+                dbconnection.Close();
+            }
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //run delete method for sunday and refresh
+            delentry("sun");
+            calendarcleanup();
+            refreshcalendar();
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            //run delete method for monday and refresh
+            delentry("mon");
+            calendarcleanup();
+            refreshcalendar();
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            //run delete method for tuesday and refresh
+            delentry("tue");
+            calendarcleanup();
+            refreshcalendar();
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            //run delete method for wed and refresh
+            delentry("wed");
+            calendarcleanup();
+            refreshcalendar();
+        }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+            //run delete method for thursday and refresh
+            delentry("thurs");
+            calendarcleanup();
+            refreshcalendar();
+        }
+
+        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
+        {
+            //run delete method for friday and refresh
+            delentry("fri");
+            calendarcleanup();
+            refreshcalendar();
+        }
+
+        private void MenuItem_Click_6(object sender, RoutedEventArgs e)
+        {
+            //run delete method for saturday and refresh
+            delentry("sat");
+            calendarcleanup();
+            refreshcalendar();
+        }
     }
 }
