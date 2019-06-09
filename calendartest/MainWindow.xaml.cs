@@ -180,7 +180,7 @@ namespace calendartest
                 {
                     day.WriteLine("Tuesday");
                 }
-                frm2.Show();
+                frm2.ShowDialog();
                 //cleanup and refresh the calendar
                 calendarcleanup();
                 refreshcalendar();
