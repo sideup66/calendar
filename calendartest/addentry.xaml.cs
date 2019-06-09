@@ -69,14 +69,21 @@ namespace calendartest
                     //find the next day using what is in the readline
                     int advclock = 0;
                     string setdate = DateTime.Today.AddDays(advclock).DayOfWeek.ToString();
-                    while (wkday != setdate)
+                    //adjust the clock if we are not setting for the same day, otherwise, calculate the schedule.
+                    if (wkday != setdate)
                     {
-                        setdate = DateTime.Today.AddDays(advclock).DayOfWeek.ToString();
-                        advclock++;
+                        while (wkday != setdate)
+                        {
+                            setdate = DateTime.Today.AddDays(advclock).DayOfWeek.ToString();
+                            advclock++;
+                        }
+                        //adjust for a 1 day offset 
+                        advclock--;
                     }
-                    //adjust for a 1 day offset 
-                    advclock--;
+                    //make the clock string
                     setdate = DateTime.Today.AddDays(advclock).ToString("MM-dd");
+
+                    //build the sql query
                     sql = "insert into Single_Events (Creation_Date, Event_Name, Start_Time, End_Time, Block_WebSites, Block_Programs) values ('" + setdate + "', '" + evntnmtxtbx.Text + "', '" + strttmpicker.Text + " " + strttmampm.Text + "', '" + endtmpicker.Text + " " + endtmampm.Text + "', " + blockprogs + " , " + blocksites + ")";
                     command = new SQLiteCommand(sql, dbconnection);
                     command.ExecuteNonQuery();
